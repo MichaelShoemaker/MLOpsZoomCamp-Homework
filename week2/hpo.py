@@ -29,6 +29,7 @@ def run(data_path, num_trials):
             rf.fit(X_train, y_train)
             y_pred = rf.predict(X_valid)
             rmse = mean_squared_error(y_valid, y_pred, squared=False)
+            mlflow.log_params(params)
             mlflow.log_metric('rmse',rmse)
             return {'loss': rmse, 'status': STATUS_OK}
 
